@@ -1,0 +1,14 @@
+import numpy as np
+
+# Bayesian Inference Function using NumPy
+def bayes_theorem(p_prior, p_positive_given_prior, p_positive_given_not_prior):
+    p_not_prior = 1 - p_prior  # Complement of the prior event
+    
+    # Total probability of a positive test
+    p_positive = np.add(np.multiply(p_positive_given_prior, p_prior),
+                        np.multiply(p_positive_given_not_prior, p_not_prior))
+    
+    # Bayes' Theorem to find P(Event | Positive Test)
+    p_posterior = np.divide(np.multiply(p_positive_given_prior, p_prior), p_positive)
+    
+    return p_posterior
